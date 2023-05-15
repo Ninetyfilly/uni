@@ -1,9 +1,12 @@
 def tramiteEntity(tramite) -> dict:
     return {
         "id": str(tramite["_id"]),
-        "name": tramite["name"],
-        "email":tramite["email"],
-        "password": tramite["password"]
+        "NoConsec": tramite["NoConsec"],
+        "fojasTotales":tramite["fojasTotales"],
+        "folioInit": tramite["folioInit"],
+        "asunto": tramite["asunto"],
+        # "fechaAper": tramite["fechaAper"],
+        # "fechaCierre": tramite["fechaCierre"],
     }
     
 def tramitesEntity(tramites) -> list:

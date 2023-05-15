@@ -5,23 +5,33 @@ from models.tramite import Tramite
 from passlib.hash import sha256_crypt
 from bson import ObjectId
 from starlette.status import HTTP_204_NO_CONTENT
+import datetime
+from bson import BSON
 
 tramite = APIRouter()
 
 @tramite.get('/tramites')
 async def find_all_tramites():
-    tramiteList = tramitesEntity(db.tramites.find())
-    return {"status": "ok", "data" : tramiteList}
+    try:
+        tramiteList = tramitesEntity(db.tramites.find())
+        return {"status": "ok", "data" : tramiteList}
+    except Exception:
+            # código que maneja el error
+            return {"status": "error", "data" : 'user not found'}
 
 @tramite.post('/tramites')
 async def create_tramite(tramite: Tramite):
-    new_tramite = dict(tramite)
-    new_tramite["password"] = sha256_crypt.encrypt(new_tramite["password"])
-    # del new_tramite["id"]
-    
-    _id =db.tramites.insert_one(new_tramite)
-    tramite = tramitesEntity(db.tramites.find({"_id": _id.inserted_id}))
-    return {"status": "ok", "data" : tramite}
+    try:
+        new_tramite = dict(tramite)
+        tramiteList = len(tramitesEntity(db.tramites.find()))
+        new_tramite["NoConsec"] = tramiteList + 1
+        print('new_tramite',new_tramite)
+        _id = db.tramites.insert_one(new_tramite)
+        new_tramite = tramitesEntity(db.tramites.find({"_id": _id.inserted_id}))
+        return {"status": "ok", "data" : new_tramite}
+    except Exception:
+            # código que maneja el error
+            return {"status": "error", "data" : 'problem in tramites'}
 
 
 @tramite.get('/tramites/{id}')
