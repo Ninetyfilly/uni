@@ -16,7 +16,7 @@ async def find_all_titulos():
 @titulo.post('/titulos')
 async def create_titulo(titulo: Titulo):
     new_titulo = dict(titulo)
-    new_titulo["password"] = sha256_crypt.encrypt(new_titulo["password"])
+    # tramite = titulosEntity(db.tramites.find({"_id": _id.inserted_id}))
     # del new_titulo["id"]
     
     _id =db.titulos.insert_one(new_titulo)

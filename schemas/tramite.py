@@ -4,6 +4,7 @@ def tramiteEntity(tramite) -> dict:
         "NoConsec": tramite["NoConsec"],
         "fojasTotales":tramite["fojasTotales"],
         "folioInit": tramite["folioInit"],
+        "folioFin": tramite["folioFin"],
         "asunto": tramite["asunto"],
         # "fechaAper": tramite["fechaAper"],
         # "fechaCierre": tramite["fechaCierre"],
