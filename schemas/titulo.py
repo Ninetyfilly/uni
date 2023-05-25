@@ -1,7 +1,7 @@
 def tituloEntity(titulo) -> dict:
     return {
         "id": str(titulo["_id"]),
-        "localizacion": titulo["localizacion"],
+        "panteon": titulo["panteon"],
         "folio":titulo["folio"],
         # "fechaDeElabo": titulo["fechaDeElabo"],
         "nombreTitu": titulo["nombreTitu"],

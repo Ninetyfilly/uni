@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class Titulo(BaseModel):
-    localizacion: str 
+    panteon: str 
     folio: str 
     # fechaDeElabo: str
     nombreTitu: str
